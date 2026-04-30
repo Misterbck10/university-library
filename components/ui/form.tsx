@@ -87,7 +87,15 @@ const FormItem = React.forwardRef<
 FormItem.displayName = "FormItem";
 
 const FormLabel = React.forwardRef<
+<<<<<<< HEAD
   React.ElementRef<typeof LabelPrimitive.Root>,
+=======
+<<<<<<< HEAD
+  React.ComponentRef<typeof LabelPrimitive.Root>,
+=======
+  React.ElementRef<typeof LabelPrimitive.Root>,
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
+>>>>>>> cce12f6 (fixed the ESLint warnings and change the Image tag to normal image html tag)
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
   const { error, formItemId } = useFormField();
@@ -104,7 +112,15 @@ const FormLabel = React.forwardRef<
 FormLabel.displayName = "FormLabel";
 
 const FormControl = React.forwardRef<
+<<<<<<< HEAD
   React.ElementRef<typeof Slot>,
+=======
+<<<<<<< HEAD
+  React.ComponentRef<typeof Slot>,
+=======
+  React.ElementRef<typeof Slot>,
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
+>>>>>>> cce12f6 (fixed the ESLint warnings and change the Image tag to normal image html tag)
   React.ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
   const { error, formItemId, formDescriptionId, formMessageId } =

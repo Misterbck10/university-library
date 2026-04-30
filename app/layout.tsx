@@ -3,8 +3,11 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
+<<<<<<< HEAD
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+=======
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
 
 const ibmPlexSans = localFont({
   src: [
@@ -28,6 +31,7 @@ export const metadata: Metadata = {
     "BookWise is a book borrowing university library management solution.",
 };
 
+<<<<<<< HEAD
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
 
@@ -41,6 +45,17 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           <Toaster position="bottom-right" />
         </body>
       </SessionProvider>
+=======
+const RootLayout = ({ children }: { children: ReactNode }) => {
+  return (
+    <html lang="en">
+      <body
+        className={`${ibmPlexSans.className} ${bebasNue.variable} antialiased`}
+      >
+        {children}
+        <Toaster />
+      </body>
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
     </html>
   );
 };

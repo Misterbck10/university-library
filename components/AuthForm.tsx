@@ -8,7 +8,15 @@ import {
   UseFormReturn,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+<<<<<<< HEAD
 import { z, ZodType } from "zod";
+=======
+<<<<<<< HEAD
+import { ZodType } from "zod";
+=======
+import { z, ZodType } from "zod";
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
+>>>>>>> cce12f6 (fixed the ESLint warnings and change the Image tag to normal image html tag)
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,10 +30,18 @@ import {
 } from "@/components/ui/form";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
+<<<<<<< HEAD
 import Image from "next/image";
+=======
+<<<<<<< HEAD
+>>>>>>> cce12f6 (fixed the ESLint warnings and change the Image tag to normal image html tag)
 import ImageUpload from "@/components/ImageUpload";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+=======
+import Image from "next/image";
+import ImageUpload from "@/components/ImageUpload";
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
 
 interface Props<T extends FieldValues> {
   schema: ZodType<T, any, any>;
@@ -40,7 +56,10 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: Props<T>) => {
+<<<<<<< HEAD
   const router = useRouter();
+=======
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
   const isSignIn = type === "SIGN_IN";
 
   const form: UseFormReturn<T> = useForm<T>({
@@ -48,6 +67,7 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
+<<<<<<< HEAD
   const handleSubmit: SubmitHandler<T> = async (data) => {
     const result = await onSubmit(data);
 
@@ -81,6 +101,9 @@ const AuthForm = <T extends FieldValues>({
       );
     }
   };
+=======
+  const handleSubmit: SubmitHandler<T> = async (data) => {};
+>>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
 
   return (
     <div className="flex flex-col gap-4">
