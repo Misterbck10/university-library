@@ -13,7 +13,6 @@ interface Book {
   summary: string;
   isLoanedBook?: boolean;
 }
-<<<<<<< HEAD
 
 interface AuthCredentials {
   fullName: string;
@@ -22,5 +21,3 @@ interface AuthCredentials {
   universityId: number;
   universityCard: string;
 }
-=======
->>>>>>> 9bf917f (The initial settings of the Project, until now we did the set-up, creation of the files, sign-in & sign-up design done, we have also the integration of Imagekit on the Project)
