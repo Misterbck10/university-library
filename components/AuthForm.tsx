@@ -24,6 +24,8 @@ import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 import Image from "next/image";
 import ImageUpload from "@/components/ImageUpload";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface Props<T extends FieldValues> {
   schema: ZodType<T, any, any>;
@@ -38,6 +40,7 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: Props<T>) => {
+  const router = useRouter();
   const isSignIn = type === "SIGN_IN";
 
   const form: UseFormReturn<T> = useForm<T>({
@@ -45,7 +48,39 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handleSubmit: SubmitHandler<T> = async (data) => {};
+  const handleSubmit: SubmitHandler<T> = async (data) => {
+    const result = await onSubmit(data);
+
+    if (result.success) {
+      toast.success(
+        <div className="flex flex-col gap-1">
+          <span className="font-semibold">Success</span>
+          {isSignIn ? (
+            <span className="text-sm text-muted-foreground">
+              "You have successfully signed in."
+            </span>
+          ) : (
+            <span className="text-sm text-muted-foreground">
+              "You have successfully signed up."
+            </span>
+          )}
+        </div>,
+      );
+
+      router.push("/");
+    } else {
+      toast.error(
+        <div className="flex flex-col gap-1">
+          <span className="font-semibold">
+            Error {isSignIn ? "signing in" : "signing up"}
+          </span>
+          <span className="text-sm text-muted-foreground">
+            {result.error ?? "An error occurred."}
+          </span>
+        </div>,
+      );
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">

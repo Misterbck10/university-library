@@ -2,6 +2,7 @@
 import React from "react";
 import AuthForm from "@/components/AuthForm";
 import { signInSchema, signUpSchema } from "@/lib/validations";
+import { signUp } from "@/lib/actions/auth";
 
 const Page = () => (
   <AuthForm
@@ -10,11 +11,11 @@ const Page = () => (
     defaultValues={{
       email: "",
       password: "",
-      fullname: "",
+      fullName: "",
       universityId: 0,
       universityCard: "",
     }}
-    onSubmit={async () => ({ success: true })}
+    onSubmit={signUp}
   />
 );
 export default Page;
