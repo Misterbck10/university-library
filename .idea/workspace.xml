@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89bb2211-b8d0-4e2d-9d12-cf682898b48f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/api/workflows/onboarding/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/too-fast/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/redis.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ratelimit.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/workflow.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/avatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/actions/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,9 +103,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/api/workflows/onboarding" />
+      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/components" />
       <recent name="$PROJECT_DIR$/app/(root)" />
-      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Next.js: server-side">
@@ -140,12 +149,15 @@
       <workItem from="1777416810749" duration="9292000" />
       <workItem from="1777490392922" duration="11090000" />
       <workItem from="1777502486369" duration="604000" />
-      <workItem from="1777503106576" duration="17100000" />
+      <workItem from="1777503106576" duration="23934000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="next.config.ts" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

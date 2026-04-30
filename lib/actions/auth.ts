@@ -4,15 +4,19 @@ import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
 import { hash } from "bcryptjs";
-import { Noto_Sans_Psalter_Pahlavi } from "next/dist/compiled/@next/font/dist/google";
-import { error } from "next/dist/build/output/log";
-import { parsedUrlQueryToParams } from "next/dist/server/route-modules/app-route/helpers/parsed-url-query-to-params";
 import { signIn } from "@/auth";
+import { headers } from "next/headers";
+import ratelimit from "@/lib/ratelimit";
+import { redirect } from "next/navigation";
 
 export const signInWithCredentials = async (
   params: Pick<AuthCredentials, "email" | "password">,
 ) => {
   const { email, password } = params;
+  const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
+  const { success } = await ratelimit.limit(ip);
+
+  if (!success) return redirect("/too-fast");
 
   try {
     const result = await signIn("credentials", {
@@ -36,6 +40,11 @@ export const signUp = async (params: AuthCredentials) => {
   const { fullName, email, universityId, password, universityCard } = params;
 
   // check if the user already exists
+  const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
+  const { success } = await ratelimit.limit(ip);
+
+  if (!success) return redirect("/too-fast");
+
   const existingUser = await db
     .select()
     .from(users)
