@@ -13,6 +13,7 @@ const ibmPlexSans = localFont({
     { path: "/fonts/IBMPlexSans-SemiBold.ttf", weight: "600", style: "normal" },
     { path: "/fonts/IBMPlexSans-Bold.ttf", weight: "700", style: "normal" },
   ],
+  preload: false,
 });
 
 const bebasNue = localFont({
@@ -20,6 +21,7 @@ const bebasNue = localFont({
     { path: "/fonts/BebasNeue-Regular.ttf", weight: "400", style: "normal" },
   ],
   variable: "--bebas-neue",
+  preload: false,
 });
 
 export const metadata: Metadata = {

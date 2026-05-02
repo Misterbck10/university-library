@@ -21,27 +21,22 @@ export const signInWithCredentials = async (
   if (!success) return redirect("/too-fast");
 
   try {
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
 
-    if (result?.error) {
-      return { success: false, error: result.error };
-    }
-
     return { success: true };
   } catch (error) {
     console.log(error, "Signin error");
-    return { success: false, error: "Signin error" };
+    return { success: false, error: "Invalid credentials" };
   }
 };
 
 export const signUp = async (params: AuthCredentials) => {
   const { fullName, email, universityId, password, universityCard } = params;
 
-  // check if the user already exists
   const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
 
@@ -54,10 +49,11 @@ export const signUp = async (params: AuthCredentials) => {
     .limit(1);
 
   if (existingUser.length > 0) {
-    return { success: false, __next_log_error__: "User already exists" };
+    return { success: false, error: "User already exists" };
   }
 
   const hashedPassword = await hash(password, 10);
+
   try {
     await db.insert(users).values({
       fullName,
@@ -75,7 +71,12 @@ export const signUp = async (params: AuthCredentials) => {
       },
     });
 
-    await signInWithCredentials({ email, password });
+    const signInResult = await signInWithCredentials({ email, password });
+
+    if (!signInResult.success) {
+      return { success: false, error: "Account created but sign-in failed" };
+    }
+
     return { success: true };
   } catch (error) {
     console.log(error, "Signup error");

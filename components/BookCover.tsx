@@ -1,14 +1,17 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { Image as IKImage } from "@imagekit/next";
 import BookCoverSvg from "@/components/BookCoverSvg";
+import config from "@/lib/config";
 
 type BookCoverVariant = "extraSmall" | "small" | "medium" | "regular" | "wide";
 
 const variantStyles: Record<BookCoverVariant, string> = {
   extraSmall: "book-cover_extra_small",
   small: "book-cover_small",
-  medium: "book-cover_medium", // ✅ fixed typo: was "book-covee_medium"
+  medium: "book-cover_medium",
   regular: "book-cover_regular",
   wide: "book-cover_wide",
 };
@@ -22,14 +25,21 @@ interface Props {
 }
 
 const BookCover = ({
-                     className,
-                     variant = "regular",
-                     coverColor = "#012B48",
-                     coverImage = "https://placehold.co/400x600.png", // ✅ removed trailing space
-                     priority = false,
-                   }: Props) => {
-  // ✅ trim any accidental whitespace from parent
+  className,
+  variant = "regular",
+  coverColor = "#012B48",
+  coverImage = "https://placehold.co/400x600.png",
+  priority = false,
+}: Props) => {
   const cleanCoverImage = coverImage.trim();
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
+
+  const placeholderSrc = `${config.env.imagekit.urlEndpoint}/tr:w-20,q-10/${cleanCoverImage}`;
+
+  const handleLoad = () => {
+    setShowPlaceholder(false);
+  };
 
   return (
     <div
@@ -44,14 +54,26 @@ const BookCover = ({
         className="absolute z-10"
         style={{ left: "12%", width: "87.5%", height: "88%" }}
       >
-        <Image
+        <IKImage
+          ref={imageRef}
           src={cleanCoverImage}
+          urlEndpoint={config.env.imagekit.urlEndpoint}
           alt="Book cover"
           fill
           className="rounded-sm object-fill"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           loading="eager"
-          priority={priority}
+          onLoad={handleLoad}
+          style={
+            showPlaceholder
+              ? {
+                  backgroundImage: `url(${placeholderSrc})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }
+              : undefined
+          }
         />
       </div>
     </div>

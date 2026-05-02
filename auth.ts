@@ -12,9 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
+        if (!credentials?.email || !credentials?.password) return null;
 
         const user = await db
           .select()
@@ -23,6 +21,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           .limit(1);
 
         if (user.length === 0) return null;
+
         const isPasswordValid = await compare(
           credentials.password.toString(),
           user[0].password,
@@ -38,26 +37,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-
-  pages: {
-    signIn: "/sign-in",
-  },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.name = user.name;
-      }
-
+      if (user) token.id = user.id;
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string;
-        session.user.name = token.name as string;
-      }
-
+      if (token?.id) session.user.id = token.id as string;
       return session;
     },
+  },
+  pages: {
+    signIn: "/sign-in", // adjust ao teu Camino
   },
 });
